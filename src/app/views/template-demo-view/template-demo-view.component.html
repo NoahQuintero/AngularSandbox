@@ -1,0 +1,36 @@
+<a href="https://alligator.io/angular/reusable-components-ngtemplateoutlet/"> https://alligator.io/angular/reusable-components-ngtemplateoutlet/ </a> <br>
+
+<app-collection [collection]="collection" [itemTemplate]="itemTemplate">
+    <ng-template let-thing="thing" #itemTemplate>
+        <div style="border: 1px solid black;" class="p-2">
+            <p style="color:blue">{{thing.key}}</p>
+        </div>
+    </ng-template>
+</app-collection>
+
+<code class="card mt-2" style="white-space: pre">
+    ABOVE MARKUP
+
+    &lt;app-collection [collection]="collection" [itemTemplate]="itemTemplate"&gt;
+        &lt;ng-template let-thing="thing" #itemTemplate&gt;
+            &lt;div style="border: 1px solid black;" class="p-2"&gt;
+                &lt;p style="color:blue"&gt; thing.key &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/ng-template&gt;
+    &lt;/app-collection&gt;
+
+
+    APP-COLLECTION
+
+    &lt;ng-container *ngFor="let thing of collection; index as i"&gt;
+
+        &lt;ng-container *ngTemplateOutlet="itemTemplate ? itemTemplate : default; context: &#123;thing: thing&#125;"&gt;
+
+        &lt;/ng-container&gt;
+
+    &lt;/ng-container&gt;
+
+    &lt;ng-template let-thing="thing" #default&gt;
+        &lt;p&gt; thing.key &lt;/p&gt;
+    &lt;/ng-template&gt;
+</code>

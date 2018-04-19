@@ -1,0 +1,31 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>thing id</th>
+            <th>thing name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let thing of things; index as i">
+            <td><span>{{thing.id}}</span></td>
+            <td>
+                <div [ngSwitch]="update && thing.id === selectedThing.id">
+                    <span *ngSwitchCase="false">{{thing.name}}</span>
+                    <form #updaterForm="ngForm">
+                        <input required *ngSwitchCase="true" type="text" name="updater" value="{{thing.name}}" [(ngModel)]="thing.name">
+                    </form>
+                </div>
+                <div class="alert alert-danger alert-sm" *ngIf="!updaterForm.form.valid && updaterForm.form.dirty">A thing must have a name!</div>
+            </td>
+            <td>
+                <div [ngSwitch]="update && thing.id === selectedThing.id">
+                    <button class="btn btn-secondary" [disabled]="update && thing.id !== selectedThing.id" *ngSwitchCase="false" type="submit" name="put" (click)="updateThing(thing)">update</button>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" [disabled]="!updaterForm.form.valid && updaterForm.form.dirty" *ngSwitchCase="true" type="submit" name="put" (click)="updateThing(thing)">save</button>
+                        <button class="btn btn-danger" *ngIf="update && thing.id === selectedThing.id" type="submit" name="delete" (click)="deleteThing(thing, i)">delete</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+<form id="thingForm" (ngSubmit)="onSubmit(newThing)" #thingForm="ngForm">
+
+    <div class="input-group">
+        <input class="form-control" required id="thing-name" type="text" name="thing-name" placeholder="your new thing" [(ngModel)]="name" #newThing="ngModel">
+        <span class="input-group-btn">
+            <button class="btn btn-secondary" [disabled]="newThing.errors" type="submit" for = "thingForm">add</button>
+        </span>
+    </div>
+    <small class="form-text text-danger ml-2" *ngIf="newThing.errors && newThing.dirty">A thing must have a name!</small>
+
+</form>

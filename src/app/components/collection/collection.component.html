@@ -1,0 +1,11 @@
+<ng-container *ngFor="let thing of collection; index as i">
+
+    <ng-container *ngTemplateOutlet="itemTemplate ? itemTemplate : default; context: {thing: thing}">
+
+    </ng-container>
+
+</ng-container>
+
+<ng-template let-thing="thing" #default>
+    <p>{{thing.key}}</p>
+</ng-template>
