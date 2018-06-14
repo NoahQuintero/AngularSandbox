@@ -16,6 +16,8 @@ import { GroceryViewComponent } from 'app/views/grocery-view/grocery-view.compon
 import { GroceryFormComponent } from './components/grocery-form/grocery-form.component';
 import { TemplateDemoViewComponent } from './views/template-demo-view/template-demo-view.component';
 import { CollectionComponent } from './components/collection/collection.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -35,7 +37,8 @@ import { CollectionComponent } from './components/collection/collection.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [ThingService,
               GroceryService],
