@@ -11,13 +11,12 @@ import { DashComponent } from 'app/components/dash/dash.component';
 import { ThingsViewComponent } from 'app/views/things-view/things-view.component';
 import { BlueThingsViewComponent } from 'app/views/blue-things-view/blue-things-view.component';
 import { ThingService } from 'app/services/thing.service';
-import { GroceryService } from 'app/services/grocery.service';
-import { GroceryViewComponent } from 'app/views/grocery-view/grocery-view.component';
-import { GroceryFormComponent } from './components/grocery-form/grocery-form.component';
 import { TemplateDemoViewComponent } from './views/template-demo-view/template-demo-view.component';
 import { CollectionComponent } from './components/collection/collection.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { TreeViewComponent } from './components/tree-view/tree-view.component';
+import { TreeViewExampleViewComponent } from './views/tree-view-example-view/tree-view-example-view.component';
 
 
 
@@ -29,10 +28,10 @@ import { environment } from '../environments/environment';
     DashComponent,
     ThingsViewComponent,
     BlueThingsViewComponent,
-    GroceryViewComponent,
-    GroceryFormComponent,
     TemplateDemoViewComponent,
-    CollectionComponent
+    CollectionComponent,
+    TreeViewComponent,
+    TreeViewExampleViewComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +39,7 @@ import { environment } from '../environments/environment';
     FormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [ThingService,
-              GroceryService],
+  providers: [ThingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

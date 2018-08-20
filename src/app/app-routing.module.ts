@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashComponent } from 'app/components/dash/dash.component';
 import { ThingsViewComponent } from 'app/views/things-view/things-view.component';
 import { BlueThingsViewComponent } from 'app/views/blue-things-view/blue-things-view.component';
-import { GroceryViewComponent } from 'app/views/grocery-view/grocery-view.component';
 import { TemplateDemoViewComponent } from 'app/views/template-demo-view/template-demo-view.component';
+import { TreeViewExampleViewComponent } from './views/tree-view-example-view/tree-view-example-view.component';
 
 const routes: Routes = [
   {
@@ -23,12 +23,12 @@ const routes: Routes = [
     component: BlueThingsViewComponent,
   },
   {
-    path: 'grocery-view',
-    component: GroceryViewComponent,
-  },
-  {
     path: 'template-demo-view',
     component: TemplateDemoViewComponent,
+  },
+  {
+    path: 'tree-view',
+    component: TreeViewExampleViewComponent,
   }
 ];
 
