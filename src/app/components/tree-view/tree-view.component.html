@@ -1,3 +1,5 @@
+<a href="javascript:void(0)" *ngIf="root" (click)="collapseAll()"><i class="fa fa-minus" ></i> Collapse All</a>
+
 <ul>
   <li *ngFor="let x of dataList" style = "list-style: none">
     <ng-container *ngIf="getType(x.value) !== 'object'; else object">
@@ -10,7 +12,7 @@
       
         <span>
           <a href="javascript:void(0)" (click)="x.show = !x.show"><i class="fa {{x.show ? 'fa-minus' : 'fa-plus'}}" ></i></a> 
-          {{x.key}}: <app-tree-view *ngIf="x.show" [data]="x.value"></app-tree-view>
+          {{x.key}}: <app-tree-view *ngIf="x.show" [data]="x.value" [root]="false" [collapse]="collapse"></app-tree-view>
         </span>
       
     </ng-template>

@@ -1,13 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tree-view',
   templateUrl: './tree-view.component.html',
   styleUrls: ['./tree-view.component.css']
 })
-export class TreeViewComponent implements OnInit {
+export class TreeViewComponent implements OnInit, OnDestroy {
+  
 
   @Input() data: any;
+  @Input() root: boolean;
+  @Input() collapse: Observable<boolean>;
+
+  collapseSubscription: Subscription;
+
+  collapseSubject: BehaviorSubject<boolean>;
 
   dataList: any[] = [];
 
@@ -15,6 +23,28 @@ export class TreeViewComponent implements OnInit {
 
   ngOnInit() {
     this.dataAnalysis(this.data, this.dataList);
+
+    // Must check that we specifically mean false.
+    // Tree-view's children will be explicitly told they are not the root
+    // tslint:disable-next-line:triple-equals
+    if (this.root != false) {
+      // We will allow (prefer) the user of a tree view not specify that it is the root
+      // aka if root not specified, we are the root.
+      this.root = true
+
+      //
+      this.collapseSubject = new BehaviorSubject<boolean>(false);
+
+      this.collapse = this.collapseSubject.asObservable();
+
+    }
+    
+    this.collapseSubscription = this.collapse.subscribe(c => {
+      console.log('collapse all')
+      this.dataList.forEach(x => {
+        x.show = false;
+      });
+    });
   }
 
   dataAnalysis(data: any, dataList: any[]) {
@@ -35,5 +65,13 @@ export class TreeViewComponent implements OnInit {
 
   getType(x: any): string {
     return typeof x;
+  }
+
+  collapseAll() {
+    this.collapseSubject.next(true);
+  }
+
+  ngOnDestroy(): void {
+    this.collapseSubscription.unsubscribe();
   }
 }
