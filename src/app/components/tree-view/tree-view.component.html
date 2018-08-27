@@ -1,14 +1,17 @@
 <ul>
   <li *ngFor="let x of dataList" style = "list-style: none">
-    <div *ngIf="getType(x.value) !== 'object'; else object">
+    <ng-container *ngIf="getType(x.value) !== 'object'; else object">
       
       <span>{{x.key}}: {{x.value}}</span>
       
-    </div>
+    </ng-container>
 
     <ng-template #object>
       
-        <span><a href="javascript:void(0)" (click)="x.show = !x.show"><i class="fa {{x.show ? 'fa-minus' : 'fa-plus'}}" ></i></a> {{x.key}}: <app-tree-view *ngIf="x.show" [data]="x.value"></app-tree-view></span>
+        <span>
+          <a href="javascript:void(0)" (click)="x.show = !x.show"><i class="fa {{x.show ? 'fa-minus' : 'fa-plus'}}" ></i></a> 
+          {{x.key}}: <app-tree-view *ngIf="x.show" [data]="x.value"></app-tree-view>
+        </span>
       
     </ng-template>
   </li>
