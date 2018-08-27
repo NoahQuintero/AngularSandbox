@@ -2,7 +2,7 @@
   <li *ngFor="let x of dataList" style = "list-style: none">
     <ng-container *ngIf="getType(x.value) !== 'object'; else object">
       
-      <span>{{x.key}}: {{x.value}}</span>
+      <span style="margin-left: 14px">&nbsp;{{x.key}}: {{x.value}}</span>
       
     </ng-container>
 
